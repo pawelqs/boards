@@ -1,5 +1,5 @@
 
-# boards
+# boards <img src="man/figures/logo.png" align="right" height="120" />
 
 <!-- badges: start -->
 <!-- badges: end -->
