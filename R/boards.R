@@ -20,6 +20,9 @@ use_local_boards_directory <- function(dir) {
   if(!dir.exists(settings_dir)) {
     dir.create(settings_dir)
   }
+  print("Echo")
+  print(dir.exists(settings_dir))
+  print(settings_file)
   yaml::write_yaml(settings, settings_file)
 }
 
