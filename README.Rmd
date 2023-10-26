@@ -110,13 +110,13 @@ show_pins()
 
 ### Read pins
 
-Pins can be read using `read_pin()` function, which takes a project name and a pin name. All other arguments (e.g. the requested version of the pin) are passed to `pins::pin_read()` function.
+Pins can be read with the `read_pin()` function, which takes a project name and a pin name. All other arguments (e.g. the requested version of the pin) are passed to the `pins::pin_read()` function.
 
 ```{r}
 read_pin("Project A", "data1")
 ```
 
-For cenvenience, if no project name is provided, `read_pin()` shows the list of existing projects, and when no pin name is provided, it shows the list of pins in the project.
+For convenience, `read_pin()` returns the list of existing projects if no project name is specified and the list of pins in the project if no pin name is specified.
 
 ```{r}
 read_pin()

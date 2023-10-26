@@ -61,12 +61,12 @@ create_local_project("Project A")
 write_pin("Project A", data1)
 #> Using `name = 'data1'`
 #> Guessing `type = 'rds'`
-#> Creating new version '20231026T144835Z-8e47e'
+#> Creating new version '20231026T145352Z-8e47e'
 #> Writing to pin 'data1'
 write_pin("Project A", data2)
 #> Using `name = 'data2'`
 #> Guessing `type = 'rds'`
-#> Creating new version '20231026T144835Z-fc5bb'
+#> Creating new version '20231026T145352Z-fc5bb'
 #> Writing to pin 'data2'
 ```
 
@@ -80,12 +80,12 @@ create_local_project("Project B")
 write_pin("Project B", l1)
 #> Using `name = 'l1'`
 #> Guessing `type = 'json'`
-#> Creating new version '20231026T144835Z-6930c'
+#> Creating new version '20231026T145352Z-6930c'
 #> Writing to pin 'l1'
 write_pin("Project B", l2)
 #> Using `name = 'l2'`
 #> Guessing `type = 'json'`
-#> Creating new version '20231026T144835Z-6930c'
+#> Creating new version '20231026T145352Z-6930c'
 #> Writing to pin 'l2'
 ```
 
@@ -118,8 +118,8 @@ show_pins("Project A")
 #> # A tibble: 2 × 7
 #>   name  version            created             hash  title description file_size
 #>   <chr> <chr>              <dttm>              <chr> <chr> <lgl>       <fs::byt>
-#> 1 data1 20231026T144835Z-… 2023-10-26 16:48:35 8e47e data… NA                108
-#> 2 data2 20231026T144835Z-… 2023-10-26 16:48:35 fc5bb data… NA                108
+#> 1 data1 20231026T145352Z-… 2023-10-26 16:53:52 8e47e data… NA                108
+#> 2 data2 20231026T145352Z-… 2023-10-26 16:53:52 fc5bb data… NA                108
 #> NULL
 ```
 
@@ -131,18 +131,18 @@ show_pins()
 #> # A tibble: 4 × 8
 #>   project   name  version  created             hash  title description file_size
 #>   <chr>     <chr> <chr>    <dttm>              <chr> <chr> <lgl>       <fs::byt>
-#> 1 Project A data1 2023102… 2023-10-26 16:48:35 8e47e data… NA                108
-#> 2 Project A data2 2023102… 2023-10-26 16:48:35 fc5bb data… NA                108
-#> 3 Project B l1    2023102… 2023-10-26 16:48:35 6930c l1: … NA                  8
-#> 4 Project B l2    2023102… 2023-10-26 16:48:35 6930c l2: … NA                  8
+#> 1 Project A data1 2023102… 2023-10-26 16:53:52 8e47e data… NA                108
+#> 2 Project A data2 2023102… 2023-10-26 16:53:52 fc5bb data… NA                108
+#> 3 Project B l1    2023102… 2023-10-26 16:53:52 6930c l1: … NA                  8
+#> 4 Project B l2    2023102… 2023-10-26 16:53:52 6930c l2: … NA                  8
 #> NULL
 ```
 
 ### Read pins
 
-Pins can be read using `read_pin()` function, which takes a project name
-and a pin name. All other arguments (e.g. the requested version of the
-pin) are passed to `pins::pin_read()` function.
+Pins can be read with the `read_pin()` function, which takes a project
+name and a pin name. All other arguments (e.g. the requested version of
+the pin) are passed to the `pins::pin_read()` function.
 
 ``` r
 read_pin("Project A", "data1")
@@ -151,14 +151,14 @@ read_pin("Project A", "data1")
 #> Warning in stri_c(list("Description: ", character(0)), sep = sep, collapse =
 #> collapse): argument is not an atomic vector; coercing
 #> Description: character(0)
-#> Created:     2023-10-26 16:48:35
+#> Created:     2023-10-26 16:53:52
 #>   a
 #> 1 1
 ```
 
-For cenvenience, if no project name is provided, `read_pin()` shows the
-list of existing projects, and when no pin name is provided, it shows
-the list of pins in the project.
+For convenience, `read_pin()` returns the list of existing projects if
+no project name is specified and the list of pins in the project if no
+pin name is specified.
 
 ``` r
 read_pin()
@@ -173,7 +173,7 @@ read_pin("Project A")
 #> # A tibble: 2 × 7
 #>   name  version            created             hash  title description file_size
 #>   <chr> <chr>              <dttm>              <chr> <chr> <lgl>       <fs::byt>
-#> 1 data1 20231026T144835Z-… 2023-10-26 16:48:35 8e47e data… NA                108
-#> 2 data2 20231026T144835Z-… 2023-10-26 16:48:35 fc5bb data… NA                108
+#> 1 data1 20231026T145352Z-… 2023-10-26 16:53:52 8e47e data… NA                108
+#> 2 data2 20231026T145352Z-… 2023-10-26 16:53:52 fc5bb data… NA                108
 #> NULL
 ```
