@@ -2,11 +2,11 @@
 % Please edit documentation in R/boards.R
 \name{local_directory}
 \alias{local_directory}
-\alias{set_local_boards_directory}
+\alias{use_local_boards_directory}
 \alias{get_local_boards_directory}
 \title{Use local boards directory}
 \usage{
-set_local_boards_directory(dir)
+use_local_boards_directory(dir)
 
 get_local_boards_directory()
 }
@@ -18,7 +18,7 @@ Use local boards directory
 }
 \examples{
 \dontrun{
-  set_local_boards_directory(tempdir())
+  use_local_boards_directory(tempdir())
   get_local_boards_directory()
 }
 }

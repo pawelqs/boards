@@ -7,7 +7,7 @@ settings_file <- file.path(settings_dir, "settings.yml")
 #'
 #' @examples
 #' \dontrun{
-#'   set_local_boards_directory(tempdir())
+#'   use_local_boards_directory(tempdir())
 #'   get_local_boards_directory()
 #' }
 #' @name local_directory
@@ -17,7 +17,7 @@ settings_file <- file.path(settings_dir, "settings.yml")
 #' @rdname local_directory
 #' @param dir Path to the selected location
 #' @export
-set_local_boards_directory <- function(dir) {
+use_local_boards_directory <- function(dir) {
   settings <- list(
     boards_location = dir
   )
