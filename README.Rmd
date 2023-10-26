@@ -1,0 +1,65 @@
+---
+output: github_document
+---
+
+<!-- README.md is generated from README.Rmd. Please edit that file -->
+
+```{r, include = FALSE}
+knitr::opts_chunk$set(
+  collapse = TRUE,
+  comment = "#>",
+  fig.path = "man/figures/README-",
+  out.width = "100%"
+)
+```
+
+# boards <img src="man/figures/logo.png" align="right" height="120" />
+
+<!-- badges: start -->
+<!-- badges: end -->
+
+The goal of boards is to manage data from many projects. boards uses pins package.
+
+## Installation
+
+You can install the development version of boards from [GitHub](https://github.com/) with:
+
+```{r eval=FALSE}
+devtools::install_github("pawelqs/boards")
+```
+
+## Usage
+
+```{r}
+library(boards)
+```
+
+```{r include=FALSE}
+# Save the current boards dir to recover it after the readme is built
+recover_boards_dir <- FALSE
+if (file.exists(boards:::settings_file)) {
+  old_dir <- get_local_boards_directory()
+  recover_boards_dir <- TRUE
+}
+```
+
+### Set the local boards directory
+
+```{r}
+boards_dir <- tempdir()
+set_local_boards_directory(boards_dir)
+```
+
+### Add project data
+
+```{r}
+show_local_projects()
+```
+
+```{r include=FALSE}
+# Recover the boards dir on the computer after the readme is built
+if (recover_boards_dir) {
+  set_local_boards_directory(old_dir)
+}
+```
+
