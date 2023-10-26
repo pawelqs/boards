@@ -1,23 +1,19 @@
-settings_dir <- tools::R_user_dir("boards", which = "config")
-settings_file <- file.path(settings_dir, "settings.yml")
-
-
-
 #' Use local boards directory
 #'
 #' @examples
 #' \dontrun{
-#'   set_local_boards_directory(tempdir())
+#'   use_local_boards_directory(tempdir())
 #'   get_local_boards_directory()
 #' }
 #' @name local_directory
+NULL
 
 
 
 #' @rdname local_directory
 #' @param dir Path to the selected location
 #' @export
-set_local_boards_directory <- function(dir) {
+use_local_boards_directory <- function(dir) {
   settings <- list(
     boards_location = dir
   )

@@ -1,5 +1,14 @@
+#' Read/Write pins
+#' @param project Project name
+#' @param pin Pin name
+#' @param ... Other arguments passed to `pin_read()`/`pin_write()`
+#' @name read-write
+NULL
+
+
+#' @describeIn read-write Read pin
 #' @export
-read_pin <- function(project = NULL, pin = NULL) {
+read_pin <- function(project = NULL, pin = NULL, ...) {
   if (is.null(project)) {
     msg("No project name provided. Found projects:")
     show_local_projects()
@@ -11,7 +20,7 @@ read_pin <- function(project = NULL, pin = NULL) {
     board <- get_project_board(project)
     meta <- pins::pin_meta(board, pin)
     print_pin_meta(meta)
-    pins::pin_read(board, pin)
+    pins::pin_read(board, pin, ...)
   }
 }
 
@@ -35,6 +44,14 @@ read_pin <- function(project = NULL, pin = NULL) {
 #   x
 # }
 
+
+
+#' @describeIn read-write Write pin
+#' @export
+write_pin <- function(project, ...) {
+  board <- get_project_board(project)
+  pins::pin_write(board, ...)
+}
 
 
 print_pin_meta <- function(meta) {

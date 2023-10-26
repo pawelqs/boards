@@ -16,9 +16,13 @@ knitr::opts_chunk$set(
 # boards <img src="man/figures/logo.png" align="right" height="120" />
 
 <!-- badges: start -->
+[![R-CMD-check](https://github.com/pawelqs/boards/actions/workflows/R-CMD-check.yaml/badge.svg)](https://github.com/pawelqs/boards/actions/workflows/R-CMD-check.yaml)
+[![Lifecycle: experimental](https://img.shields.io/badge/lifecycle-experimental-orange.svg)](https://lifecycle.r-lib.org/articles/stages.html#experimental)
 <!-- badges: end -->
 
-The goal of boards is to manage data from many projects. boards uses pins package.
+The goal of boards is to manage local [pins](https://pins.rstudio.com/) boards from many projects. [pins](https://pins.rstudio.com/) allows to easily read, save and version data using *board* objects. When working on many parallel projects, it can be useful to have an easy access to a selection of objects from many boards. The *boards* package uses a *central board* - all the project boards are a subdirectories of the main, central directory, and the data *pinned* to these boards can be easily searched and read.
+
+ [pins](https://pins.rstudio.com/) allows to specify many different types of boards, including the Posit Cloud and AWS S2. **boards** package uses a local folder boards.
 
 ## Installation
 
@@ -45,21 +49,88 @@ if (file.exists(boards:::settings_file)) {
 
 ### Set the local boards directory
 
+First, specify the directory in which all the boards should be placed.
+
 ```{r}
 boards_dir <- tempdir()
-set_local_boards_directory(boards_dir)
+use_local_boards_directory(boards_dir)
 ```
 
 ### Add project data
+
+Now it is time to create project boards and save the data. In this example we simulate 2 projects. We want to save two data.frames from Project A:
+
+```{r}
+data1 <- data.frame(a = 1)
+data2 <- data.frame(b = 1)
+
+create_local_project("Project A")
+write_pin("Project A", data1)
+write_pin("Project A", data2)
+```
+
+and 2 lists from project B.
+
+```{r}
+l1 <- list(a = 1)
+l2 <- list(a = 1)
+
+create_local_project("Project B")
+write_pin("Project B", l1)
+write_pin("Project B", l2)
+```
+
+Project name is the first argument of the `write_pin()` function. All other arguments (e.g. `versioned = TRUE`) are passed to `pins::pin_write()` function.
+
+### Search projects and pins
+
+Now we can print all the projects created in **boards**:
 
 ```{r}
 show_local_projects()
 ```
 
+or to just get them as a vector:
+
+```{r}
+get_local_projects()
+```
+
+Knowing the neme of the project, we can list all the pins in this project:
+
+```{r}
+show_pins("Project A")
+```
+
+If no project name is specified, `show_pins()` and `get_pins()` will return the pins from all the projects:
+
+```{r}
+show_pins()
+```
+
+### Read pins
+
+Pins can be read with the `read_pin()` function, which takes a project name and a pin name. All other arguments (e.g. the requested version of the pin) are passed to the `pins::pin_read()` function.
+
+```{r}
+read_pin("Project A", "data1")
+```
+
+For convenience, `read_pin()` returns the list of existing projects if no project name is specified and the list of pins in the project if no pin name is specified.
+
+```{r}
+read_pin()
+```
+
+```{r}
+read_pin("Project A")
+```
+
+
 ```{r include=FALSE}
 # Recover the boards dir on the computer after the readme is built
 if (recover_boards_dir) {
-  set_local_boards_directory(old_dir)
+  use_local_boards_directory(old_dir)
 }
 ```
 
