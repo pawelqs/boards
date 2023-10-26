@@ -1,8 +1,3 @@
-settings_dir <- tools::R_user_dir("boards", which = "config")
-settings_file <- file.path(settings_dir, "settings.yml")
-
-
-
 #' Use local boards directory
 #'
 #' @examples
@@ -11,6 +6,7 @@ settings_file <- file.path(settings_dir, "settings.yml")
 #'   get_local_boards_directory()
 #' }
 #' @name local_directory
+NULL
 
 
 

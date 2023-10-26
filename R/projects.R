@@ -1,3 +1,10 @@
+
+#' Manage projects
+#' @name projects
+NULL
+
+
+#' @describeIn projects Show the list of the existing projects
 #' @export
 show_local_projects <- function() {
   projects <- get_local_projects()
@@ -7,6 +14,7 @@ show_local_projects <- function() {
 
 
 
+#' @describeIn projects Get the list of the existing projects
 #' @export
 get_local_projects <- function() {
   dir <- get_local_boards_directory()
@@ -15,6 +23,8 @@ get_local_projects <- function() {
 
 
 
+#' @describeIn projects Create a new project board
+#' @param name Project name
 #' @export
 create_local_project <- function(name) {
   project_path <- get_project_path(name, stop_if_not_exist = FALSE)
@@ -41,5 +51,3 @@ get_project_board <- function(project) {
   path <- get_project_path(project)
   pins::board_folder(path)
 }
-
-

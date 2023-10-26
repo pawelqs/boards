@@ -16,7 +16,6 @@ Imports:
     rlang,
     stringr,
     tidyr,
-    tools,
     yaml
 Suggests: 
     testthat (>= 3.0.0)
